@@ -16,9 +16,9 @@
 
             $SELECT = "SELECT name FROM nurse";
             try {
-                $stmt = $dbh->prepare($SELECT);
-                $stmt->execute();
-                $res = $stmt->fetchAll();
+                $statement = $dbh->prepare($SELECT);
+                $statement->execute();
+                $res = $statement->fetchAll();
                 foreach ($res as $row) {
                     echo("<option value='$row[0]'>$row[0]</option>");
                 }
@@ -40,9 +40,9 @@
 
             $SELECT = "SELECT name FROM ward";
             try {
-                $stmt = $dbh->prepare($SELECT);
-                $stmt->execute();
-                $res = $stmt->fetchAll();
+                $statement = $dbh->prepare($SELECT);
+                $statement->execute();
+                $res = $statement->fetchAll();
                 foreach ($res as $row) {
                     echo("<option value='$row[0]'>$row[0]</option>");
                 }
