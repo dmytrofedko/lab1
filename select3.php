@@ -6,15 +6,12 @@ $SELECT =
     "SELECT nurse.id_nurse, nurse.name, nurse.date, nurse.department FROM nurse
     WHERE nurse.shift = :shift";
 
-try {
-    $stmt = $dbh->prepare($SELECT);
-    $stmt->bindValue(":shift", $shift);
-    $stmt->execute();
-
-    $res = $stmt->fetchAll();
-} catch (PDOException $ex) {
-    echo $ex->GetMessage();
-}
+try 
+{
+    $statement = $dbh->prepare($SELECT);
+    $statement->execute([':shift' => $shift]);
+    $res = $statement->fetchAll();
+} catch (PDOException $ex) { echo $ex->GetMessage(); }
 ?>
 
 <!DOCTYPE html>
@@ -27,9 +24,12 @@ try {
     <h2>nurses that work <?php echo($shift)?> shift</h2>
 
     <?php
-    if (count($res) == 0) {
+    if (count($res) == 0) 
+    {
         echo("<p>$shift does not have any nurses in it</p>");
-    } else {
+    } 
+    else 
+    {
     ?>
         <table>
             <thead>
@@ -40,7 +40,8 @@ try {
             </thead>
             <tbody>
                 <?php 
-                foreach ($res as $row) {
+                foreach ($res as $row) 
+                {
                     echo("<tr><td>$row[0]</td>");
                     echo("<td>$row[1]</td>");
                     echo("<td>$row[2]</td>");

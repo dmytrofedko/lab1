@@ -22,9 +22,7 @@
                 foreach ($res as $row) {
                     echo("<option value='$row[0]'>$row[0]</option>");
                 }
-            } catch (PDOException $ex) {
-                echo $ex->GetMessage();
-            }
+            } catch (PDOException $ex) { echo $ex->GetMessage(); }
             ?>
         </select>
       </div>
@@ -48,9 +46,7 @@
                 foreach ($res as $row) {
                     echo("<option value='$row[0]'>$row[0]</option>");
                 }
-            } catch (PDOException $ex) {
-                echo $ex->GetMessage();
-            }
+            } catch (PDOException $ex) { echo $ex->GetMessage(); }
             ?>
         </select>
       </div>

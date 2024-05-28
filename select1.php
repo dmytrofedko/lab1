@@ -8,15 +8,12 @@ $SELECT =
     WHERE nurse_ward.fid_nurse = 
     (SELECT nurse.id_nurse FROM nurse WHERE nurse.name= :nurse)";
 
-try {
-    $stmt = $dbh->prepare($SELECT);
-    $stmt->bindValue(":nurse", $nurse);
-    $stmt->execute();
-
-    $res = $stmt->fetchAll();
-} catch (PDOException $ex) {
-    echo $ex->GetMessage();
-}
+try 
+{
+    $statement = $dbh->prepare($SELECT);
+    $statement->execute([':nurse' => $nurse]);
+    $res = $statement->fetchAll();
+} catch (PDOException $ex) { echo $ex->GetMessage(); }
 ?>
 
 <!DOCTYPE html>
@@ -29,9 +26,12 @@ try {
     <h2>wards of the <?php echo($nurse)?> nurse</h2>
 
     <?php
-    if (count($res) == 0) {
+    if (count($res) == 0) 
+    {
         echo("<p>$nurse does not have any shifts in any wards</p>");
-    } else {
+    } 
+    else 
+    {
     ?>
         <table>
             <thead>
@@ -40,7 +40,8 @@ try {
             </thead>
             <tbody>
                 <?php 
-                foreach ($res as $row) {
+                foreach ($res as $row) 
+                {
                     echo("<tr><td>$row[0]</td>");
                     echo("<td>$row[1]</td>");
                 }
